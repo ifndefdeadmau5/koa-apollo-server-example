@@ -18,9 +18,6 @@ const server = new ApolloServer({
   }),
   introspection: true,
   playground: true,
-  engine: {
-    apiKey: 'service:ifndefdeadmau5-2791:S_lD4P6c1qq7twtp-5B4aA',
-  },
 });
 server.applyMiddleware({ app });
 
