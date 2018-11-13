@@ -1,6 +1,11 @@
 import knex from './sql/connector';
 
 const models = {
+  Post: {
+    async findAll() {
+      return knex.select().from('Post');
+    },
+  },
   User: {
     async findById({ id }) {
       const users = await knex.select().from('User').where({ id });
