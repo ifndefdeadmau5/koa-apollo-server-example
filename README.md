@@ -15,7 +15,7 @@ An example GraphQL server that mainly demonstrates basic setup with Koa + Apollo
 npm install
 
 # serve using nodemon with hot reload
-npm run watch
+NODE_ENV=development npm run watch
 
 # build for production with prettier and babel
 npm run build
