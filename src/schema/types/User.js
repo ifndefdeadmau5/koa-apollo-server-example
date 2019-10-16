@@ -22,7 +22,7 @@ export const typeDef = gql`
 export const resolvers = {
   Query: {
     getUser: async (root, { id }, { models }) => {
-      return models.User.findById(id);
+      return models.User.findById({ id });
     },
   },
   Mutation: {
