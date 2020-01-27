@@ -4,8 +4,8 @@ import jsonwebtoken from 'jsonwebtoken';
 
 export const typeDef = gql`
   type User {
-    id: String!
-    password: String!
+    id: ID!
+    password: String
     username: String
   }
 

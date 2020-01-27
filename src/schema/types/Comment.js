@@ -1,28 +1,28 @@
 import { gql } from 'apollo-server-koa';
 
 export const typeDef = gql`
-  type Post {
+  type Comment {
     id: ID
-    title: String
     content: String
     createdAt: String
+    userId: String
   }
 
   extend type Query {
-    Posts: [Post]
+    Comments: [Comment]
   }
 `;
 
 export const resolvers = {
-  Post: {
-    title: () => 'fake title',
+  Comment: {
+    content: () => 'Sample comment',
   },
   Query: {
-    Posts: (root, args, { user, models }) => {
+    Comments: (root, args, { user, models }) => {
       if (!user) {
         throw new Error('You are not authenticated!');
       }
-      return models.Post.findAll();
+      return models.Comment.findAll();
     },
   },
 };
