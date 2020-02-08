@@ -5,7 +5,7 @@ export const typeDef = gql`
     id: ID
     content: String
     createdAt: String
-    userId: String
+    user: User
   }
 
   extend type Query {
@@ -15,11 +15,26 @@ export const typeDef = gql`
 
 export const resolvers = {
   Query: {
-    comments: (root, { postId }, { user, models }) => {
+    comments: async (root, { postId }, { user, models }) => {
       if (!user) {
         throw new Error('You are not authenticated!');
       }
-      return models.Comment.find({ postId });
+      const result = await models.Comment.find({ postId });
+
+      if (!result) throw new Error('No comments');
+
+      const refined = result.map(({
+        userId, username, email, ...rest
+      }) => ({
+        ...rest,
+        user: {
+          id: userId,
+          username,
+          email,
+        },
+      }));
+
+      return refined;
     },
   },
 };

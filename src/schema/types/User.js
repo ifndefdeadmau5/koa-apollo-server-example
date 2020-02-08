@@ -7,6 +7,7 @@ export const typeDef = gql`
     id: ID!
     password: String
     username: String
+    email: String
   }
 
   extend type Query {

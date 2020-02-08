@@ -5,6 +5,19 @@ const models = {
     async findAll() {
       return knex.select().from('Post');
     },
+    async find(options) {
+      return knex('Post')
+        .select([
+          'Post.id',
+          'Post.title',
+          'Post.content',
+          'User.email',
+          'User.username',
+          'User.id as userId',
+        ])
+        .leftJoin('User', 'Post.authorId', '=', 'user.id')
+        .where(options);
+    },
   },
   User: {
     async findById({ id }) {
@@ -24,7 +37,17 @@ const models = {
       return knex.select().from('Comment');
     },
     async find(options) {
-      return knex.select().from('Comment').where(options);
+      return knex('Comment')
+        .select([
+          'Comment.id',
+          'Comment.content',
+          'Comment.createdAt',
+          'User.email',
+          'User.username',
+          'User.id as userId',
+        ])
+        .join('User', 'Comment.userId', '=', 'user.id')
+        .where(options);
     },
   },
 };
