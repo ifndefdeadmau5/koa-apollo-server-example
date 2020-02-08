@@ -6,19 +6,17 @@ export const typeDef = gql`
     title: String
     content: String
     createdAt: String
+    comments: [Comment]
   }
 
   extend type Query {
-    Posts: [Post]
+    posts: [Post]
   }
 `;
 
 export const resolvers = {
-  Post: {
-    title: () => 'fake title',
-  },
   Query: {
-    Posts: (root, args, { user, models }) => {
+    posts: (root, args, { user, models }) => {
       if (!user) {
         throw new Error('You are not authenticated!');
       }

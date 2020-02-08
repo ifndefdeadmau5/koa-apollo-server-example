@@ -9,20 +9,17 @@ export const typeDef = gql`
   }
 
   extend type Query {
-    Comments: [Comment]
+    comments(postId: ID!): [Comment]
   }
 `;
 
 export const resolvers = {
-  Comment: {
-    content: () => 'Sample comment',
-  },
   Query: {
-    Comments: (root, args, { user, models }) => {
+    comments: (root, { postId }, { user, models }) => {
       if (!user) {
         throw new Error('You are not authenticated!');
       }
-      return models.Comment.findAll();
+      return models.Comment.find({ postId });
     },
   },
 };

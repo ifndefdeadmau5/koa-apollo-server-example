@@ -23,6 +23,9 @@ const models = {
     async findAll() {
       return knex.select().from('Comment');
     },
+    async find(options) {
+      return knex.select().from('Comment').where(options);
+    },
   },
 };
 

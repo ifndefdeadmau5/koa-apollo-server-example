@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-koa';
 import merge from 'lodash/merge';
 import { typeDef as User, resolvers as UserResolvers } from './types/User';
 import { typeDef as Post, resolvers as PostResolvers } from './types/Post';
+import { typeDef as Comment, resolvers as CommentResolvers } from './types/Comment';
 
 const Query = gql`
   # Put fake fields on each Query & Mutation as below because currently schema cannot have empty type
@@ -32,10 +33,12 @@ export default makeExecutableSchema({
     Query,
     User,
     Post,
+    Comment,
   ],
   resolvers: merge(
     resolvers,
     UserResolvers,
     PostResolvers,
+    CommentResolvers,
   ),
 });
