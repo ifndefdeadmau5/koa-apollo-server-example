@@ -14,6 +14,16 @@ export const typeDef = gql`
     posts: [Post]
     post(id: ID!): Post
   }
+
+  input CreatePostInput {
+    title: String
+    content: String
+    authorId: String
+  }
+
+  extend type Mutation {
+    createPost(input: CreatePostInput!): Post
+  }
 `;
 
 export const resolvers = {
@@ -42,5 +52,8 @@ export const resolvers = {
       }
       return models.Post.findAll();
     },
+  },
+  Mutation: {
+    createPost: async (root, { input }, { models }) => models.Post.createPost(input),
   },
 };

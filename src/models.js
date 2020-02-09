@@ -18,6 +18,9 @@ const models = {
         .leftJoin('User', 'Post.authorId', '=', 'user.id')
         .where(options);
     },
+    async createPost(args) {
+      return knex('Post').insert(args);
+    },
   },
   User: {
     async findById({ id }) {
