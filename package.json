@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-koa": "^2.0.0-rc.12",
+    "apollo-server-koa": "^2.14.2",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.6",
     "dotenv": "^6.1.0",
