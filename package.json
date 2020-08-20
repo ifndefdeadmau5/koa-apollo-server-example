@@ -16,7 +16,7 @@
   "dependencies": {
     "apollo-server-koa": "^2.0.0-rc.12",
     "babel-polyfill": "^6.26.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "dotenv": "^6.1.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.2",
